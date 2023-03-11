@@ -2,3 +2,5 @@
 
 node index.js
 npm run dev
+
+React Hook "useFetch" is called in function "handleSubmit" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".eslintreact-hooks/rules-of-hooks
