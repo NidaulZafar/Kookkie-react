@@ -2,6 +2,7 @@ import express from "express";
 import connectDatabase from "./database/connectDatabase.js";
 import cors from "cors";
 import User from "./models/User.js";
+import validator from "validator";
 
 const app = express();
 // Middleware
@@ -17,11 +18,6 @@ app.post("/api/user/create", async (req, res) => {
   console.log("Received request to create user:", req.body);
   const { firstName, surname, email, password } = req.body;
   console.log(firstName, surname, email, password);
-
-  // Validate input
-  if (!firstName || !surname || !email || !password) {
-    return res.status(400).json({ error: "Please fill all fields" });
-  }
 
   try {
     // Connect to database
@@ -42,6 +38,20 @@ app.post("/api/user/create", async (req, res) => {
     console.error(err);
     res.status(500).json({ error: "Server error." });
   }
+});
+
+app.post("/api/user/login", (req, res) => {
+  const { email, password } = req.body;
+
+  // validate email
+  if (!validator.isEmail(email)) {
+    return res.status(400).json({ message: "Invalid email address" });
+  }
+
+  // TODO: Look up user in database using email and password
+
+  // TODO: Return appropriate response based on whether user was found
+  // and whether password matches
 });
 
 export default app;
