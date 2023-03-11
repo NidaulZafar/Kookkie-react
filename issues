@@ -1,0 +1,4 @@
+.env issue in connectDatabase.js
+
+node index.js
+npm run dev
