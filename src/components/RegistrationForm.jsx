@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import User from "../../server/models/User";
+import { useNavigate } from "react-router-dom";
 
 const RegistrationForm = () => {
   const [userData, setUserData] = useState({
@@ -15,29 +15,40 @@ const RegistrationForm = () => {
     const { name, value } = event.target;
     setUserData((prevState) => ({ ...prevState, [name]: value }));
   };
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // const user = new User({
-    //   firstName,
-    //   surname,
-    //   email,
-    //   password,
-    // });
+    const { firstName, surname, email, confirmEmail, password } = userData;
 
-    // const response = await fetch("/api/submit-form", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({ firstName, surname, email, password }),
-    // });
+    // Validate user data
+    if (!firstName || !surname || !email || !password) {
+      console.log("Please fill in all required fields");
+      return;
+    }
 
-    // Save the new user to the database
-    // try {
-    //   await user.save();
-    //   console.log("User saved successfully");
-    // } catch (error) {
-    //   console.error(error);
-    // }
+    if (email !== confirmEmail) {
+      console.log("Email addresses do not match");
+      return;
+    }
+
+    if (password.length < 3) {
+      console.log("Password must be at least 3 characters long");
+      return;
+    }
+
+    // Send user data to backend
+    fetch("http://localhost:5000/api/user/create", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ firstName, surname, email, password }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.message); // User registration successful
+        navigate("/registrationSuccess");
+      })
+      .catch((error) => console.error(error));
   };
 
   const { firstName, surname, email, confirmEmail, password, confirmPassword } =
