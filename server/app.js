@@ -76,7 +76,8 @@ app.post("/api/user/login", async (req, res) => {
 
     // password matches, generate JWT and send response
     const token = generateToken(user._id);
-    return res.json({ token });
+    const { firstName, surname } = user;
+    return res.json({ token, firstName, surname });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Server error." });
