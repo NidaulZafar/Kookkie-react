@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 
-function Login() {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [error, setError] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [surname, setSurname] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -35,7 +37,9 @@ function Login() {
       } else {
         if (data.token) {
           setLoggedIn(true);
-          // Store user's information in component state or in Redux
+          // Store user's information in component state
+          setFirstName(data.firstName); // Store user's firstName in component state
+          setSurname(data.surname);
         } else {
           setError("Incorrect email or password");
         }
@@ -48,7 +52,9 @@ function Login() {
   if (loggedIn) {
     return (
       <div>
-        <p>You are logged in!</p>
+        <p>
+          Hi {firstName} {surname}, welcome to your admin account!
+        </p>
       </div>
     );
   }
@@ -81,6 +87,6 @@ function Login() {
       <div>No account yet? Create one here.</div>
     </div>
   );
-}
+};
 
 export default Login;
