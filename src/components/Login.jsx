@@ -6,33 +6,44 @@ function Login() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [error, setError] = useState("");
 
-  function handleLogin(e) {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    // Make API request to check if user's email and password are valid
-    fetch("/api/user/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.error) {
+    try {
+      // Make API request to check if user's email and password are valid
+      const response = await fetch("http://localhost:5000/api/user/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+      if (response.status === 404) {
+        setError("User not found");
+        return;
+      }
+      const data = await response.json();
+      if (data.error) {
+        if (data.error === "User not found") {
           setError(data.error);
         } else {
+          setError("Incorrect email or password");
+        }
+      } else {
+        if (data.token) {
           setLoggedIn(true);
           // Store user's information in component state or in Redux
+        } else {
+          setError("Incorrect email or password");
         }
-      })
-      .catch((error) => {
-        setError("Error logging in");
-      });
-  }
+      }
+    } catch (error) {
+      setError("Error logging in");
+    }
+  };
 
   if (loggedIn) {
     return (

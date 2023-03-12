@@ -3,6 +3,8 @@ import connectDatabase from "./database/connectDatabase.js";
 import cors from "cors";
 import User from "./models/User.js";
 import validator from "validator";
+import bcrypt from "bcrypt";
+import generateToken from "./auth.js";
 
 const app = express();
 // Middleware
@@ -13,6 +15,9 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
+// Connect to database
+connectDatabase();
+
 // Routes
 app.post("/api/user/create", async (req, res) => {
   console.log("Received request to create user:", req.body);
@@ -20,11 +25,17 @@ app.post("/api/user/create", async (req, res) => {
   console.log(firstName, surname, email, password);
 
   try {
-    // Connect to database
-    await connectDatabase();
+    // hash password
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
 
     // Create user object
-    const user = new User(req.body);
+    const user = new User({
+      firstName,
+      surname,
+      email,
+      password: hashedPassword,
+    });
 
     // Save user to database
     await user.save();
@@ -40,7 +51,7 @@ app.post("/api/user/create", async (req, res) => {
   }
 });
 
-app.post("/api/user/login", (req, res) => {
+app.post("/api/user/login", async (req, res) => {
   const { email, password } = req.body;
 
   // validate email
@@ -48,10 +59,28 @@ app.post("/api/user/login", (req, res) => {
     return res.status(400).json({ message: "Invalid email address" });
   }
 
-  // TODO: Look up user in database using email and password
+  try {
+    // Look up user in database using email
+    const user = await User.findOne({ email });
 
-  // TODO: Return appropriate response based on whether user was found
-  // and whether password matches
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Check if password matches
+    const matchPassword = await bcrypt.compare(password, user.password);
+
+    if (!matchPassword) {
+      return res.status(401).json({ message: "Incorrect email or password" });
+    }
+
+    // password matches, generate JWT and send response
+    const token = generateToken(user._id);
+    return res.json({ token });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error." });
+  }
 });
 
 export default app;
