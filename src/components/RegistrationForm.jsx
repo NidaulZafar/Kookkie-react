@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const RegistrationForm = () => {
   const [userData, setUserData] = useState({
@@ -10,6 +11,11 @@ const RegistrationForm = () => {
     password: "",
     confirmPassword: "",
   });
+
+  const [captcha, setCaptcha] = useState(null);
+  const handleCaptchaChange = (value) => {
+    setCaptcha(value);
+  };
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -124,6 +130,10 @@ const RegistrationForm = () => {
             required
           />
         </div>
+        <ReCAPTCHA
+          sitekey="6Lf-PvYkAAAAAA2VqxiuSIvrA-romzdDmUwEojpG"
+          onChange={handleCaptchaChange}
+        />
         <button type="submit">CREATE ACCOUNT</button>
       </form>
     </div>
