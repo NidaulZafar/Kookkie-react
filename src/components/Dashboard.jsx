@@ -5,7 +5,11 @@ const Dashboard = () => {
   const { userInfo } = useContext(UserContext);
 
   if (!userInfo) {
-    return <div>Hi</div>;
+    return (
+      <div className="error-message welcome-msg">
+        No Dashboard without logging in
+      </div>
+    );
   }
 
   return (

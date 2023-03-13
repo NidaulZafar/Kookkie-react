@@ -18,7 +18,6 @@ function App() {
           <Route path="/" element={<RegistrationForm />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
-
           <Route path="*" element={<NotFound />} />
         </Routes>
       </UserContext.Provider>
