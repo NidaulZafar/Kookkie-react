@@ -61,70 +61,70 @@ const RegistrationForm = () => {
     userData;
 
   return (
-    <div>
-      <h2>Create your account</h2>
+    <div className="container">
+      <p className="heading">Create your account</p>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="firstName">First name</label>
           <input
             type="text"
             id="firstName"
             name="firstName"
+            placeholder="First name"
             value={firstName}
             onChange={handleInputChange}
             required
           />
         </div>
         <div>
-          <label htmlFor="surname">Surname</label>
           <input
             type="text"
             id="surname"
             name="surname"
+            placeholder="Surname"
             value={surname}
             onChange={handleInputChange}
             required
           />
         </div>
         <div>
-          <label htmlFor="email">Email address</label>
           <input
             type="email"
             id="email"
             name="email"
+            placeholder="Email address"
             value={email}
             onChange={handleInputChange}
             required
           />
         </div>
         <div>
-          <label htmlFor="confirmEmail">Confirm Email address</label>
           <input
             type="email"
             id="confirmEmail"
             name="confirmEmail"
+            placeholder="Confirm Email address"
             value={confirmEmail}
             onChange={handleInputChange}
             required
           />
         </div>
         <div>
-          <label htmlFor="password">Password</label>
           <input
             type="password"
             id="password"
             name="password"
+            placeholder="Password"
             value={password}
             onChange={handleInputChange}
             required
           />
         </div>
         <div>
-          <label htmlFor="confirmPassword">Repeat your password</label>
           <input
             type="password"
             id="confirmPassword"
             name="confirmPassword"
+            placeholder="Repeat your password"
             value={confirmPassword}
             onChange={handleInputChange}
             required
