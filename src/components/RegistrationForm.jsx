@@ -65,7 +65,6 @@ const RegistrationForm = () => {
       <p className="heading">Create your account</p>
       <form onSubmit={handleSubmit}>
         <div>
-          {/* <label htmlFor="firstName">First name</label> */}
           <input
             type="text"
             id="firstName"
@@ -77,7 +76,6 @@ const RegistrationForm = () => {
           />
         </div>
         <div>
-          {/* <label htmlFor="surname">Surname</label> */}
           <input
             type="text"
             id="surname"
@@ -89,7 +87,6 @@ const RegistrationForm = () => {
           />
         </div>
         <div>
-          {/* <label htmlFor="email">Email address</label> */}
           <input
             type="email"
             id="email"
@@ -101,7 +98,6 @@ const RegistrationForm = () => {
           />
         </div>
         <div>
-          {/* <label htmlFor="confirmEmail">Confirm Email address</label> */}
           <input
             type="email"
             id="confirmEmail"
@@ -113,7 +109,6 @@ const RegistrationForm = () => {
           />
         </div>
         <div>
-          {/* <label htmlFor="password">Password</label> */}
           <input
             type="password"
             id="password"
@@ -125,7 +120,6 @@ const RegistrationForm = () => {
           />
         </div>
         <div>
-          {/* <label htmlFor="confirmPassword">Repeat your password</label> */}
           <input
             type="password"
             id="confirmPassword"

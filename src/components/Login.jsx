@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -60,31 +61,32 @@ const Login = () => {
   }
 
   return (
-    <div>
-      <h2>Login</h2>
+    <div className="container">
+      <p className="heading">Login</p>
       {error && <p>{error}</p>}
       <form onSubmit={handleLogin}>
-        <label>
-          Email address
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </label>
+        <input
+          type="email"
+          placeholder="Email address"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
         <br />
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <br />
-        <button type="submit">Login</button>
+        <button type="submit">LOGIN</button>
       </form>
-      <div>No account yet? Create one here.</div>
+      <p className="no-account">
+        No account yet?
+        <span>
+          <Link to="/"> Create one here.</Link>
+        </span>
+      </p>
     </div>
   );
 };
