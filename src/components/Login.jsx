@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import UserContext from "../Contexts/UserContext.js";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
   const [error, setError] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [surname, setSurname] = useState("");
+  const [loggedIn, setLoggedIn] = useState(false);
+  const { userInfo, setUserInfo } = useContext(UserContext);
+
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -39,9 +40,11 @@ const Login = () => {
       } else {
         if (data.token) {
           setLoggedIn(true);
-          // Store user's information in component state
-          setFirstName(data.firstName);
-          setSurname(data.surname);
+          // Store user's information in context
+          setUserInfo({
+            firstName: data.firstName,
+            surname: data.surname,
+          });
           navigate("/dashboard");
         } else {
           setError("Incorrect email or password");
@@ -51,16 +54,6 @@ const Login = () => {
       setError("Error logging in");
     }
   };
-
-  if (loggedIn) {
-    return (
-      <div>
-        <p>
-          Hi {firstName} {surname}, welcome to your admin account!
-        </p>
-      </div>
-    );
-  }
 
   return (
     <div className="container">

@@ -5,12 +5,12 @@ const Dashboard = () => {
   const { userInfo } = useContext(UserContext);
 
   if (!userInfo) {
-    return <div>Hi{userInfo}</div>;
+    return <div>Hi</div>;
   }
 
   return (
     <div>
-      Hi, {userInfo.firstName} {userInfo.surname}
+      Hi, {userInfo.firstName} {userInfo.surname}, welcome to your admin account
     </div>
   );
 };
