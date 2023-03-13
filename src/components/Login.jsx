@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -8,6 +8,7 @@ const Login = () => {
   const [error, setError] = useState("");
   const [firstName, setFirstName] = useState("");
   const [surname, setSurname] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -41,6 +42,7 @@ const Login = () => {
           // Store user's information in component state
           setFirstName(data.firstName);
           setSurname(data.surname);
+          navigate("/dashboard");
         } else {
           setError("Incorrect email or password");
         }
