@@ -39,7 +39,7 @@ const Login = () => {
         if (data.token) {
           setLoggedIn(true);
           // Store user's information in component state
-          setFirstName(data.firstName); // Store user's firstName in component state
+          setFirstName(data.firstName);
           setSurname(data.surname);
         } else {
           setError("Incorrect email or password");
