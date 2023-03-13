@@ -23,9 +23,9 @@ form {
 }
 
 input {
-  padding: 20px 5px 5px 10px;
+  margin: 15px;
+  padding: 0;
   width: 80%;
-  margin-bottom: 10px;
   border-radius: 0px;
   border: none;
   background-color: #f7f7f7;
