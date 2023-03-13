@@ -9,7 +9,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div>
+    <div className="welcome-msg">
       Hi, {userInfo.firstName} {userInfo.surname}, welcome to your admin account
     </div>
   );

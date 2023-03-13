@@ -5,6 +5,7 @@ import User from "./models/User.js";
 import validator from "validator";
 import bcrypt from "bcrypt";
 import generateToken from "./auth.js";
+import fetch from "node-fetch";
 
 const app = express();
 // Middleware
@@ -21,10 +22,25 @@ connectDatabase();
 // Routes
 app.post("/api/user/create", async (req, res) => {
   console.log("Received request to create user:", req.body);
-  const { firstName, surname, email, password } = req.body;
+  const { firstName, surname, email, password, captcha } = req.body;
   console.log(firstName, surname, email, password);
 
   try {
+    // Verify ReCAPTCHA token
+    const recaptchaResponse = await fetch(
+      `https://www.google.com/recaptcha/api/siteverify?secret=${"6Lf-PvYkAAAAAFUmY8bZ8Jwp0tq-zUFUq_36VlEt"}&response=${captcha}`,
+      {
+        method: "POST",
+      }
+    );
+
+    const data = await recaptchaResponse.json();
+    console.log(data);
+
+    if (!data.success) {
+      res.status(400).json({ error: "Invalid ReCAPTCHA token" });
+      return;
+    }
     // hash password
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);

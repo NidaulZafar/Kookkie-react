@@ -7,7 +7,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
-  const { userInfo, setUserInfo } = useContext(UserContext);
+  const [userInfo, setUserInfo] = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -58,7 +58,7 @@ const Login = () => {
   return (
     <div className="container">
       <p className="heading">Login</p>
-      {error && <p>{error}</p>}
+      {error && <p className="error-message">{error}</p>}
       <form onSubmit={handleLogin}>
         <input
           type="email"

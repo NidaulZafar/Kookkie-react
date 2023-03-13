@@ -26,7 +26,14 @@ const RegistrationForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const { firstName, surname, email, confirmEmail, password } = userData;
+    const {
+      firstName,
+      surname,
+      email,
+      confirmEmail,
+      password,
+      confirmPassword,
+    } = userData;
 
     // Validate user data
     if (!firstName || !surname || !email || !password) {
@@ -43,19 +50,24 @@ const RegistrationForm = () => {
       setErrorMessage("Password must be at least 3 characters long");
       return;
     }
+    if (password !== confirmPassword) {
+      setErrorMessage("Passwords should match");
+      return;
+    }
+    if (!captcha) {
+      setErrorMessage("Please complete the ReCAPTCHA verification");
+      return;
+    }
 
     // Send user data to backend
-    fetch("http://localhost:5000/api/user/create", {
+    const response = await fetch("http://localhost:5000/api/user/create", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ firstName, surname, email, password }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data.message); // User registration successful
-        navigate("/login");
-      })
-      .catch((error) => console.error(error));
+      body: JSON.stringify({ firstName, surname, email, password, captcha }),
+    });
+    const data = await response.json();
+    console.log(data.message); // User registration successful
+    navigate("/login");
   };
 
   const { firstName, surname, email, confirmEmail, password, confirmPassword } =
