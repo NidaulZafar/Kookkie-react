@@ -7,7 +7,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
-  const [userInfo, setUserInfo] = useContext(UserContext);
+  const { userInfo, setUserInfo } = useContext(UserContext);
 
   const navigate = useNavigate();
 
