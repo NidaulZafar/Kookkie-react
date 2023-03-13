@@ -52,7 +52,7 @@ const RegistrationForm = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data.message); // User registration successful
-        navigate("/registrationSuccess");
+        navigate("/login");
       })
       .catch((error) => console.error(error));
   };
