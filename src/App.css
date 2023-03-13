@@ -67,7 +67,9 @@ a {
 span {
   color: #6a8db3;
 }
-
+.error-message {
+  color: red;
+}
 @media (max-width: 768px) {
   .container {
     max-width: 100%;

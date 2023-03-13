@@ -17,6 +17,7 @@ const RegistrationForm = () => {
     setCaptcha(value);
   };
 
+  const [errorMessage, setErrorMessage] = useState("");
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserData((prevState) => ({ ...prevState, [name]: value }));
@@ -29,17 +30,17 @@ const RegistrationForm = () => {
 
     // Validate user data
     if (!firstName || !surname || !email || !password) {
-      console.log("Please fill in all required fields");
+      setErrorMessage("Please fill in all required fields");
       return;
     }
 
     if (email !== confirmEmail) {
-      console.log("Email addresses do not match");
+      setErrorMessage("Email addresses do not match");
       return;
     }
 
     if (password.length < 3) {
-      console.log("Password must be at least 3 characters long");
+      setErrorMessage("Password must be at least 3 characters long");
       return;
     }
 
@@ -63,6 +64,7 @@ const RegistrationForm = () => {
   return (
     <div className="container">
       <p className="heading">Create your account</p>
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
       <form onSubmit={handleSubmit}>
         <div>
           <input
