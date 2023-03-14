@@ -4,7 +4,7 @@ import RegistrationForm from "./components/RegistrationForm.jsx";
 import Login from "./components/Login.jsx";
 import Dashboard from "./components/Dashboard";
 import NotFound from "./components/NotFound";
-import UserContext from "./Contexts/UserContext.js";
+import UserContext from "./contexts/UserContext.js";
 
 import "./App.css";
 
