@@ -6,7 +6,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false); //TODO Since i am not using loggedIn and userInfo, is it ok to remove them from here?
   const { userInfo, setUserInfo } = useContext(UserContext);
 
   const navigate = useNavigate();

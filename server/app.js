@@ -8,7 +8,7 @@ import generateToken from "./auth.js";
 import fetch from "node-fetch";
 
 const app = express();
-// Middleware
+
 app.use(express.json());
 
 const corsOptions = {
@@ -28,6 +28,7 @@ app.post("/api/user/create", async (req, res) => {
   try {
     // Verify ReCAPTCHA token
     const recaptchaResponse = await fetch(
+      // TODO I need the secret key to be stored in .env
       `https://www.google.com/recaptcha/api/siteverify?secret=${"6Lf-PvYkAAAAAFUmY8bZ8Jwp0tq-zUFUq_36VlEt"}&response=${captcha}`,
       {
         method: "POST",
