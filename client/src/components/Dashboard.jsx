@@ -1,13 +1,12 @@
 import React, { useContext } from "react";
+import { Navigate } from "react-router-dom";
 import UserContext from "../contexts/UserContext.js";
 
 const Dashboard = () => {
   const { userInfo } = useContext(UserContext);
 
   if (!userInfo) {
-    return (
-      <div className="error-message welcome-msg">Unauthorized Arrival</div>
-    );
+    return <Navigate to="/login" replace />;
   }
 
   return (
