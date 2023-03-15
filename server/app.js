@@ -17,6 +17,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // Connect to database
+console.log("app.js");
 connectDatabase();
 
 // Routes
@@ -27,9 +28,9 @@ app.post("/api/user/create", async (req, res) => {
 
   try {
     // Verify ReCAPTCHA token
+    console.log(process.env.SECRET);
     const recaptchaResponse = await fetch(
-      // TODO I need the secret key to be stored in .env
-      `https://www.google.com/recaptcha/api/siteverify?secret=${"6Lf-PvYkAAAAAFUmY8bZ8Jwp0tq-zUFUq_36VlEt"}&response=${captcha}`,
+      `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.SECRET}&response=${captcha}`,
       {
         method: "POST",
       }
