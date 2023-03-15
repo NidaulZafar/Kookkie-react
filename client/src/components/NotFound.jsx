@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const NotFound = () => {
   return (
-    <div className="error-message welcome-msg">
-      <h1>Oops! You seem to be lost.</h1>
-      <p>Here are some helpful links:</p>
+    <div className="error-message container">
+      <h1 className="heading">Oops! You seem to be lost.</h1>
+      <p style={{ color: "#6a8db3" }}>Here are some helpful links:</p>
       <Link to="/" style={{ margin: "20px" }}>
         Registration Page
       </Link>

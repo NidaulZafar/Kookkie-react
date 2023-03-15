@@ -13,8 +13,11 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="welcome-msg">
-      Hi, {userInfo.firstName} {userInfo.surname}, welcome to your admin account
+    <div className="container">
+      <p className="heading">
+        Hi, {userInfo.firstName} {userInfo.surname}, welcome to your admin
+        account
+      </p>
     </div>
   );
 };
