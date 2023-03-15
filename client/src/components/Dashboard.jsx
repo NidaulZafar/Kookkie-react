@@ -6,16 +6,14 @@ const Dashboard = () => {
 
   if (!userInfo) {
     return (
-      <div className="error-message welcome-msg">
-        No Dashboard without logging in
-      </div>
+      <div className="error-message welcome-msg">Unauthorized Arrival</div>
     );
   }
 
   return (
     <div className="container">
       <p className="heading">
-        Hi, {userInfo.firstName} {userInfo.surname}, welcome to your admin
+        Hi {userInfo.firstName} {userInfo.surname}, welcome to your admin
         account
       </p>
     </div>
