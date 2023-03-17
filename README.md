@@ -4,7 +4,7 @@
 This project is a technical assignment given by [Settly](https://getsettly.com/) as a part of the hiring process for an internee / Junior web developer. The web version of this project can be seen on [Render](https://settly-technical-assignment.onrender.com). A quick guide to what was built:
 
 <div align="center">
-<img src="https://res.cloudinary.com/dl44q0v9r/image/upload/v1678746912/ezgif.com-gif-maker_1_mwynpg.gif" width="800" alt="WelcomeScreen">
+<img src="https://res.cloudinary.com/dl44q0v9r/image/upload/v1679087724/ezgif.com-gif-maker_2_wlnhin.gif" width="800" alt="WelcomeScreen">
 </div>
 
 ## Description
@@ -16,6 +16,7 @@ The Home page of the project is a registration page where a user can register to
 * No field can be left blank.
 * Google Captcha validation is a must.
 * User should re-enter email and password for confirmation.
+* If the user enters an invalid URL they are redirected to the 404 Page.
 
 ## Code Structure
 ```
