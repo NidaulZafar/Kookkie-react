@@ -65,8 +65,7 @@ const RegistrationForm = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ firstName, surname, email, password, captcha }),
     });
-    const data = await response.json();
-    console.log(data.message); // User registration successful
+    await response.json();
     navigate("/login");
   };
 

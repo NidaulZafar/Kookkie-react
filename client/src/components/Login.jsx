@@ -40,8 +40,6 @@ const Login = () => {
       } else {
         if (data.token) {
           setLoggedIn(true);
-          console.log(data);
-          console.log(data.token);
           // Store user's information in context
           setUserInfo({
             firstName: data.firstName,
