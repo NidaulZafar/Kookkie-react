@@ -75,3 +75,8 @@ span {
   margin: 20%;
   font-size: large;
 }
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+}

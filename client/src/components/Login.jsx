@@ -1,13 +1,13 @@
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import UserContext from "../Contexts/UserContext.js";
+import UserContext from "../contexts/UserContext.js";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false); //TODO Since i am not using loggedIn and userInfo, is it ok to remove them from here?
-  const { userInfo, setUserInfo } = useContext(UserContext);
+  const [, setLoggedIn] = useState(false);
+  const { setUserInfo } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -44,6 +44,7 @@ const Login = () => {
           setUserInfo({
             firstName: data.firstName,
             surname: data.surname,
+            userToken: data.token,
           });
           navigate("/dashboard");
         } else {
