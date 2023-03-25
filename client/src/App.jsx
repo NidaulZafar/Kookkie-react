@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import RegistrationForm from "./components/RegistrationForm.jsx";
-import Login from "./components/Login.jsx";
+import Registration from "./pages/Registration/Registration.jsx";
+import Login from "./pages/Login/Login.jsx";
 import Dashboard from "./components/Dashboard";
 import NotFound from "./components/NotFound";
 import UserContext from "./contexts/UserContext.js";
+import Home from "./pages/Home/Home.jsx";
 
 import "./App.css";
 
@@ -15,7 +16,8 @@ function App() {
     <>
       <UserContext.Provider value={{ userInfo, setUserInfo }}>
         <Routes>
-          <Route path="/" element={<RegistrationForm />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/registration" element={<Registration />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<NotFound />} />

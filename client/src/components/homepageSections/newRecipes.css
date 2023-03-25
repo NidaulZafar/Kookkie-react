@@ -1,0 +1,8 @@
+.new-recipes-component {
+  width: 100%;
+  overflow: scroll;
+}
+
+.new-recipes-list {
+  display: flex;
+}

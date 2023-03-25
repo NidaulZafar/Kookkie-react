@@ -1,0 +1,4 @@
+.all-recipes-list {
+  display: flex;
+  flex-wrap: wrap;
+}

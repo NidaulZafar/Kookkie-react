@@ -1,0 +1,44 @@
+.main-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+  margin: 20px;
+  position: relative;
+}
+
+.form-group label {
+  font-size: 1em;
+}
+
+.form-group input {
+  width: 100%;
+  border: 1px solid rgba(34, 34, 34, 1);
+  border-radius: 6px;
+  height: 5vh;
+}
+
+.outer {
+  width: 20vw;
+  height: 7vh;
+  border: 1px solid #d9c639;
+  border-radius: 30px;
+  background-color: #fff;
+}
+
+.filled-form-button {
+  background-color: #d9c639;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20%;
+  align-items: center;
+}
