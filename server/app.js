@@ -17,18 +17,15 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // Connect to database
-console.log("app.js");
 connectDatabase();
 
 // Routes
 app.post("/api/user/create", async (req, res) => {
   console.log("Received request to create user:", req.body);
   const { firstName, surname, email, password, captcha } = req.body;
-  console.log(firstName, surname, email, password);
 
   try {
     // Verify ReCAPTCHA token
-    console.log(process.env.SECRET);
     const recaptchaResponse = await fetch(
       `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.SECRET}&response=${captcha}`,
       {
@@ -37,7 +34,6 @@ app.post("/api/user/create", async (req, res) => {
     );
 
     const data = await recaptchaResponse.json();
-    console.log(data);
 
     if (!data.success) {
       res.status(400).json({ error: "Invalid ReCAPTCHA token" });
@@ -60,7 +56,6 @@ app.post("/api/user/create", async (req, res) => {
 
     // Return success message
     const response = { message: "User created successfully" };
-    console.log(response);
     res.status(201).json(response);
     return response;
   } catch (err) {
