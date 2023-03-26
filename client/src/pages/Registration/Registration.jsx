@@ -53,7 +53,7 @@ const RegistrationForm = () => {
       : "outer empty-form-button";
 
   return (
-    <div className="container">
+    <div className="registration-container">
       <p className="heading">Create your account</p>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
       <form method="POST" id="register-form" onSubmit={handleSubmit}>
