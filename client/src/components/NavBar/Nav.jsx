@@ -12,12 +12,15 @@ const Nav = () => {
   const [showMenu, setShowMenu] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 768 });
 
-  const toggleMenu = () => {
-    setShowMenu(!showMenu);
+  const [activeLink, setActiveLink] = useState("");
+
+  const handleClick = (link) => {
+    setActiveLink(link);
+    setShowMenu(false);
   };
 
-  const closeMenu = () => {
-    setShowMenu(false);
+  const toggleMenu = () => {
+    setShowMenu(!showMenu);
   };
 
   return (
@@ -38,50 +41,69 @@ const Nav = () => {
               {showMenu ? <FaTimes /> : <FaBars />}
             </div>
             {showMenu && (
-              <div className="mobile-menu">
-                <ul className="nav-menu-mobile">
-                  <li className="nav-item">
-                    <Link to="/" className="nav-link" onClick={closeMenu}>
-                      <FiHome />
-                      Home
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link
-                      to="/kookie-call"
-                      className="nav-link"
-                      onClick={closeMenu}
+              <>
+                <div className="overlay"></div>
+                <div className="mobile-menu">
+                  <ul className="nav-menu-mobile">
+                    <li
+                      className={`nav-item ${
+                        activeLink === "/" ? "active" : ""
+                      }`}
+                      onClick={() => handleClick("/")}
                     >
-                      <BsHeart /> Kookkie Call
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link to="/about" className="nav-link" onClick={closeMenu}>
-                      <BsCircle /> About
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link
-                      to="/contact"
-                      className="nav-link"
-                      onClick={closeMenu}
+                      <Link to="/" className="nav-link">
+                        <FiHome />
+                        <span className="nav-item-text">Home</span>
+                      </Link>
+                    </li>
+                    <li
+                      className={`nav-item ${
+                        activeLink === "kookie-call" ? "active" : ""
+                      }`}
+                      onClick={() => handleClick("kookie-call")}
                     >
-                      <TbMessageCircle2 /> Contact Us
-                    </Link>
-                  </li>
-                  <br></br>
-                  <br></br>
-                  <br></br>
-                  <br></br>
-                  <br></br>
-                  <br></br>
-                  <li className="nav-item">
-                    <Link to="/" className="nav-link" onClick={closeMenu}>
-                      <FiLogOut /> Log out
-                    </Link>
-                  </li>
-                </ul>
-              </div>
+                      <Link to="/kookie-call" className="nav-link">
+                        <BsHeart />{" "}
+                        <span className="nav-item-text">Kookkie Call</span>
+                      </Link>
+                    </li>
+                    <li
+                      className={`nav-item ${
+                        activeLink === "about" ? "active" : ""
+                      }`}
+                      onClick={() => handleClick("about")}
+                    >
+                      <Link to="/about" className="nav-link">
+                        <BsCircle />
+                        <span className="nav-item-text">About</span>
+                      </Link>
+                    </li>
+                    <li
+                      className={`nav-item ${
+                        activeLink === "contact" ? "active" : ""
+                      }`}
+                      onClick={() => handleClick("contact")}
+                    >
+                      <Link to="/contact" className="nav-link">
+                        <TbMessageCircle2 />
+                        <span className="nav-item-text">Contact Us</span>
+                      </Link>
+                    </li>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <li className="nav-item">
+                      <Link to="/" className="nav-link">
+                        <FiLogOut />
+                        <span className="nav-item-text">Log out</span>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </>
             )}
           </>
         ) : (

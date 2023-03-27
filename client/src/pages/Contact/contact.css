@@ -1,4 +1,17 @@
 .contact-form {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+}
+
+.contact-form textarea {
+  border: 2px solid rgba(217, 198, 57, 1);
+  max-width: 80vw;
+  min-height: 25vh;
+  margin: 20px 0px;
+}
+
+.contact-form button {
+  margin: auto;
+  min-width: 35vw;
+  min-height: 10vh;
 }
